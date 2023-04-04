@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rux-I3-BS0">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main-->
+        <scene sceneID="anU-D8-PmZ">
+            <objects>
+                <tabBarController storyboardIdentifier="Main" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rux-I3-BS0" customClass="Main" customModule="PersonalOnlineBanking" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kOe-eF-eu7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="RXd-kI-L74" kind="relationship" relationship="viewControllers" id="X7s-ti-QzW"/>
+                        <segue destination="0RN-i4-aq9" kind="relationship" relationship="viewControllers" id="eek-vC-IoO"/>
+                        <segue destination="qMm-bR-hMn" kind="relationship" relationship="viewControllers" id="kSi-ck-ZNM"/>
+                        <segue destination="fhn-C5-s6d" kind="relationship" relationship="viewControllers" id="zYp-lA-GAV"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z2z-IH-IQI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-661" y="-163"/>
+        </scene>
+        <!--Payment-->
+        <scene sceneID="ZVD-da-gcW">
+            <objects>
+                <viewController storyboardIdentifier="Payment" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qMm-bR-hMn" customClass="Payment" customModule="PersonalOnlineBanking" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Etb-sT-u7Z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="uLe-nJ-yVI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Payment" image="creditcard.circle.fill" catalog="system" id="YG5-ze-CBV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ntS-O3-Phn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-174" y="530"/>
+        </scene>
+        <!--Transfer-->
+        <scene sceneID="Xof-VA-UrA">
+            <objects>
+                <viewController storyboardIdentifier="Transfer" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0RN-i4-aq9" customClass="Transfer" customModule="PersonalOnlineBanking" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MNL-Pv-9t3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="ccN-Os-sgu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Transfer" image="arrow.up.circle.fill" catalog="system" id="2uY-NT-HnW"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eX2-rO-myJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1100" y="524"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="OPs-2R-NZh">
+            <objects>
+                <viewController storyboardIdentifier="Profile" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fhn-C5-s6d" customClass="Profile" customModule="PersonalOnlineBanking" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lcl-zP-APi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="899-nD-gDe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.circle.fill" catalog="system" id="HTG-1m-ila"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s9C-L4-xcy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="606" y="530"/>
+        </scene>
+        <!--Bank-->
+        <scene sceneID="i2O-un-6hA">
+            <objects>
+                <viewController storyboardIdentifier="Home" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RXd-kI-L74" customClass="Home" customModule="PersonalOnlineBanking" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qVz-Iz-wei">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="UMD-qh-D6k"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Bank" image="dollarsign.circle.fill" catalog="system" id="Og3-wN-VTg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xAB-gZ-bKn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1978" y="530"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrow.up.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="creditcard.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="dollarsign.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

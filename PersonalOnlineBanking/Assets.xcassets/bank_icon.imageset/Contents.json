@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "bank_icon 2.05.43 am.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "bank_icon 2.05.43 am-1.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "bank_icon 2.05.43 am-2.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
