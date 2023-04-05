@@ -16,5 +16,11 @@ struct TransactionModel
     var type: String
 }
 
+struct BankModel
+{
+    var username: String
+    var type: String
+}
+
 
 
