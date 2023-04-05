@@ -8,8 +8,192 @@
 import UIKit
 
 class Payment: UIViewController{
+    
+    let paypalView: CardView = {
+        let view = CardView()
+        view.backgroundColor = HexColor(hex: "#3b7bbf")
+        return view
+    }()
+    
+    let debitView: CardView = {
+        let view = CardView()
+        view.backgroundColor = HexColor(hex: "#D2042D")
+        return view
+    }()
+    
+    let applePayView: CardView = {
+        let view = CardView()
+        view.backgroundColor = HexColor(hex: "#000000")
+        return view
+    }()
+    
+    let googlePayView: CardView = {
+        let view = CardView()
+        view.backgroundColor = HexColor(hex: "#4285F4")
+        return view
+    }()
+    
+    let giftcardView: CardView = {
+        let view = CardView()
+        view.backgroundColor = HexColor(hex: "#FFAA33")
+        return view
+    }()
+    
+    private let PaypalLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Add PayPal account"
+        label.textAlignment = .center
+        label.font = .boldSystemFont(ofSize: 18.0)
+        label.textColor = .white
+        return label
+    }()
+    
+    private let DebitLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Add a card"
+        label.textAlignment = .center
+        label.font = .boldSystemFont(ofSize: 18.0)
+        label.textColor = .white
+        return label
+    }()
+    
+    private let AppleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Configure Apple Pay"
+        label.textAlignment = .center
+        label.font = .boldSystemFont(ofSize: 18.0)
+        label.textColor = .white
+        return label
+    }()
+    
+    private let GoogleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Configure Google Pay"
+        label.textAlignment = .center
+        label.font = .boldSystemFont(ofSize: 18.0)
+        label.textColor = .white
+        return label
+    }()
+    
+    private let GiftCardLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Giftcard Code"
+        label.textAlignment = .center
+        label.font = .boldSystemFont(ofSize: 18.0)
+        label.textColor = .white
+        return label
+    }()
+    
+    let paypalImageView: UIImageView = {
+       let image = UIImageView()
+        image.image = UIImage(named: "paypal_logo")
+       return image
+    }()
+    
+    let debitImageView: UIImageView = {
+       let image = UIImageView()
+        image.image = UIImage(named: "mastercard_logo")
+       return image
+    }()
+    
+    let appleImageView: UIImageView = {
+       let image = UIImageView()
+        image.image = UIImage(named: "apple_logo")
+       return image
+    }()
+    
+    let googleImageView: UIImageView = {
+       let image = UIImageView()
+        image.image = UIImage(named: "google_icon")
+       return image
+    }()
+    
+    let giftcardImageView: UIImageView = {
+       let image = UIImageView()
+        image.image = UIImage(systemName: "gift.fill")
+        image.tintColor = .systemPink
+        return image
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.addSubview(paypalView)
+        view.addSubview(debitView)
+        view.addSubview(applePayView)
+        view.addSubview(googlePayView)
+        view.addSubview(giftcardView)
+        
+        config()
     }
+    
+    func config(){
+        paypalView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        paypalView.anchor(left: view.leftAnchor, bottom: debitView.topAnchor, right: view.rightAnchor, paddingLeft: 25, paddingBottom: 10, paddingRight: 25, height: 100)
+        
+        paypalView.addSubview(PaypalLabel)
+        paypalView.addSubview(paypalImageView)
+        
+        PaypalLabel.centerYAnchor.constraint(equalTo: paypalView.centerYAnchor).isActive = true
+        PaypalLabel.centerXAnchor.constraint(equalTo: paypalView.centerXAnchor).isActive = true
+        PaypalLabel.anchor(paddingTop: 0)
+        
+        paypalImageView.centerYAnchor.constraint(equalTo: paypalView.centerYAnchor).isActive = true
+        paypalImageView.anchor(left: paypalView.leftAnchor, paddingLeft: 25, width: 50, height: 30)
+        
+        debitView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        debitView.anchor(left: view.leftAnchor, bottom: applePayView.topAnchor, right: view.rightAnchor, paddingLeft: 25, paddingBottom: 10, paddingRight: 25, height: 100)
+        
+        debitView.addSubview(DebitLabel)
+        debitView.addSubview(debitImageView)
+        
+        DebitLabel.centerYAnchor.constraint(equalTo: debitView.centerYAnchor).isActive = true
+        DebitLabel.centerXAnchor.constraint(equalTo: debitView.centerXAnchor).isActive = true
+        DebitLabel.anchor(paddingTop: 0)
+        
+        debitImageView.centerYAnchor.constraint(equalTo: DebitLabel.centerYAnchor).isActive = true
+        debitImageView.anchor(left: paypalView.leftAnchor, paddingLeft: 25, width: 50, height: 50)
+        
+        applePayView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        applePayView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        applePayView.anchor(left: view.leftAnchor, right: view.rightAnchor, paddingLeft: 25, paddingRight: 25, height: 100)
+        
+        applePayView.addSubview(AppleLabel)
+        applePayView.addSubview(appleImageView)
+        
+        AppleLabel.centerYAnchor.constraint(equalTo: applePayView.centerYAnchor).isActive = true
+        AppleLabel.centerXAnchor.constraint(equalTo: applePayView.centerXAnchor).isActive = true
+        AppleLabel.anchor(paddingTop: 0)
+        
+        appleImageView.centerYAnchor.constraint(equalTo: applePayView.centerYAnchor).isActive = true
+        appleImageView.anchor(left: applePayView.leftAnchor, paddingLeft: 30, width: 30, height: 30)
+        
+        
+        googlePayView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        googlePayView.anchor(top: applePayView.bottomAnchor,left: view.leftAnchor, right: view.rightAnchor, paddingTop: 10, paddingLeft: 25, paddingRight: 25, height: 100)
+        
+        googlePayView.addSubview(GoogleLabel)
+        googlePayView.addSubview(googleImageView)
+        
+        GoogleLabel.centerYAnchor.constraint(equalTo: googlePayView.centerYAnchor).isActive = true
+        GoogleLabel.centerXAnchor.constraint(equalTo: googlePayView.centerXAnchor).isActive = true
+        GoogleLabel.anchor(paddingTop: 0)
+        
+        googleImageView.centerYAnchor.constraint(equalTo: googlePayView.centerYAnchor).isActive = true
+        googleImageView.anchor(left: applePayView.leftAnchor, paddingLeft: 30, width: 30, height: 30)
+        
+        giftcardView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        giftcardView.anchor(top: googlePayView.bottomAnchor,left: view.leftAnchor, right: view.rightAnchor, paddingTop: 10, paddingLeft: 25, paddingRight: 25, height: 100)
+        
+        giftcardView.addSubview(GiftCardLabel)
+        giftcardView.addSubview(giftcardImageView)
+        GiftCardLabel.centerYAnchor.constraint(equalTo: giftcardView.centerYAnchor).isActive = true
+        GiftCardLabel.centerXAnchor.constraint(equalTo: giftcardView.centerXAnchor).isActive = true
+        GiftCardLabel.anchor(paddingTop: 0)
+        
+        giftcardImageView.centerYAnchor.constraint(equalTo: GiftCardLabel.centerYAnchor).isActive = true
+        giftcardImageView.anchor(left: applePayView.leftAnchor, paddingLeft: 30, width: 25, height: 25)
+    }
+    
 }
 
