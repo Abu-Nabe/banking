@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import SQLite3
+import Stripe
 
 class Home: UIViewController{
     
     let cellid = "cellid"
     var transactionData: [TransactionModel] = [TransactionModel]()
+    var cardData: [CardModel] = [CardModel]()
     
     let WelcomeView: UIView = {
         let view = UIView()
@@ -67,7 +70,7 @@ class Home: UIViewController{
     
     private let NumberLabel: UILabel = {
         let label = UILabel()
-        label.text = "**** **** **** 0137"
+        label.text = "**** **** **** 0000"
         label.textAlignment = .center
         label.font = .boldSystemFont(ofSize: 26)
         label.textColor = .white
@@ -85,7 +88,7 @@ class Home: UIViewController{
     
     private let ExpiryLabel: UILabel = {
         let label = UILabel()
-        label.text = "04/26"
+        label.text = "00/00"
         label.textAlignment = .center
         label.font = .boldSystemFont(ofSize: 18.0)
         label.textColor = .white
@@ -111,8 +114,13 @@ class Home: UIViewController{
         view.addSubview(RecentLabel)
         
         config()
-        configData()
         configTableView()
+            
+        StripeConfig.config()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        configData()
     }
     
     func config(){
@@ -163,15 +171,20 @@ class Home: UIViewController{
     }
     
     func configData(){
-        let name = ["Amaruq D", "Thomas F"]
-        let amount = ["10 USD", "12 GBP"]
-        let type = ["Sent", "Received"]
-        let time = ["24/03", "04/04"]
+        transactionData = SQLiteTransaction.getTransactions()
         
-        for i in 0..<name.count {
-            let transaction = TransactionModel(username: name[i], amount: amount[i], time: time[i], type: type[i])
-            self.transactionData.append(transaction)
-        }
+        cardData = SQLiteCard.getCards()
+        configCard()
+    }
+    
+    func configCard(){
+        NumberLabel.text = "**** **** **** " + cardData[0].last4
+        ExpiryLabel.text = cardData[0].expiry
+        CardLabel.text = cardData[0].type
+      
+        let cardBrand = CardType.reverseConfig(from: cardData[0].type)
+        cardView.backgroundColor = cardBrand
+    
     }
 }
 
