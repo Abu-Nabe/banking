@@ -6,36 +6,47 @@
 //
 
 import UIKit
+import Stripe
 
 class Payment: UIViewController{
     
     let paypalView: CardView = {
         let view = CardView()
         view.backgroundColor = HexColor(hex: "#3b7bbf")
+        view.layer.borderWidth = 2
+        view.layer.borderColor = UIColor(named: "Gray2")!.cgColor
         return view
     }()
     
     let debitView: CardView = {
         let view = CardView()
         view.backgroundColor = HexColor(hex: "#D2042D")
+        view.layer.borderWidth = 2
+        view.layer.borderColor = UIColor(named: "Gray2")!.cgColor
         return view
     }()
     
     let applePayView: CardView = {
         let view = CardView()
         view.backgroundColor = HexColor(hex: "#000000")
+        view.layer.borderWidth = 2
+        view.layer.borderColor = UIColor(named: "Gray2")!.cgColor
         return view
     }()
     
     let googlePayView: CardView = {
         let view = CardView()
         view.backgroundColor = HexColor(hex: "#4285F4")
+        view.layer.borderWidth = 2
+        view.layer.borderColor = UIColor(named: "Gray2")!.cgColor
         return view
     }()
     
     let giftcardView: CardView = {
         let view = CardView()
         view.backgroundColor = HexColor(hex: "#FFAA33")
+        view.layer.borderWidth = 2
+        view.layer.borderColor = UIColor(named: "Gray2")!.cgColor
         return view
     }()
     
@@ -125,6 +136,7 @@ class Payment: UIViewController{
         view.addSubview(giftcardView)
         
         config()
+        configOnClick()
     }
     
     func config(){
@@ -195,5 +207,59 @@ class Payment: UIViewController{
         giftcardImageView.anchor(left: applePayView.leftAnchor, paddingLeft: 30, width: 25, height: 25)
     }
     
+    func configOnClick(){
+        let cardData = SQLiteCard.getCards()
+        
+        if(cardData.count == 0){
+            let debitTap = UITapGestureRecognizer(target: self, action: #selector(addCard))
+            debitView.addGestureRecognizer(debitTap)
+        }else{
+            DebitLabel.text = "Card added"
+        }
+    }
+    
+    @objc func addCard(){
+        let addCardViewController = STPAddCardViewController(configuration: STPPaymentConfiguration.shared, theme: STPTheme.defaultTheme)
+        addCardViewController.delegate = self
+        
+        let navigationController = UINavigationController(rootViewController: addCardViewController)
+        present(navigationController, animated: true)
+    }
 }
 
+extension Payment: STPAddCardViewControllerDelegate {
+    
+    func addCardViewControllerDidCancel(_ addCardViewController: STPAddCardViewController) {
+        dismiss(animated: true)
+    }
+    
+    func addCardViewController(_ addCardViewController: STPAddCardViewController, didCreatePaymentMethod paymentMethod: STPPaymentMethod, completion: @escaping STPErrorBlock) {
+        // Handle successful creation of payment method here
+        let name = paymentMethod.billingDetails?.name ?? "Mohammed Ibraheem Reyaz"
+        let cardBrand = paymentMethod.card?.brand ?? .unknown
+        let type = CardType.config(cardBrand: cardBrand)
+        let last4 = paymentMethod.card?.last4 ?? ""
+        let expMonth = paymentMethod.card?.expMonth ?? 0
+        let expYear = paymentMethod.card?.expYear ?? 0
+        let formattedExpDate = String(format: "%02d/%02d", expMonth, expYear % 100)
+    
+        print("Cardholder name: \(name)")
+        print("Card brand: \(cardBrand.rawValue)")
+        print("Last 4 digits: \(last4)")
+        print("Expiration date: \(formattedExpDate)")
+        
+        SQLiteCard.insertCard(username: name, type: type, last4: last4, expdate: formattedExpDate)
+        
+        dismiss(animated: true)
+    }
+    
+    func addCardViewController(_ addCardViewController: STPAddCardViewController, didFailToCreatePaymentMethodWithError error: Error) {
+        // Handle error while creating payment method here
+        print("XAS", error)
+        dismiss(animated: true)
+    }
+    
+    func setupCard(){
+        
+    }
+}
