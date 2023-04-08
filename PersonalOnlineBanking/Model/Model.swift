@@ -16,6 +16,14 @@ struct TransactionModel
     var type: String
 }
 
+struct CardModel
+{
+    var username: String
+    var type: String
+    var last4: String
+    var expiry: String
+}
+
 struct BankModel
 {
     var username: String
