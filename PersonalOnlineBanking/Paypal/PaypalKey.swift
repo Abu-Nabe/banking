@@ -6,9 +6,19 @@
 //
 
 import UIKit
-
+import Alamofire
 class PaypalKey{
-    static var clientID = "AaC2y8dOx3dYKgtztfUFC-wgv_BAvv_Icq57va62icLv4zwSj1dSdbOYHfcUgRRAt8zI3FvM6QBCC0u1"
-    
-    static var secretID = "EJ8AbBwqeNMvH1csQBLbdoWTCWs0tLgR42LyisTyGs414pica4B0KPnAkpLRDFYSOc3NMZVO4otP9wt3"
+    static func getPaypalToken(completion: @escaping (Result<String, Error>) -> Void) {
+        let url_connect1 = url_connect.url + "payment/" + "PaypalToken.php"
+
+        AF.request(url_connect1, method: .post, parameters: nil, encoding: URLEncoding.default, headers: nil).responseString { response in
+            switch response.result {
+            case .success(let value):
+                completion(.success(value))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
 }
