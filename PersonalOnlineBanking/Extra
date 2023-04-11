@@ -1,1 +1,46 @@
-
+func paymentMethod(){
+        let authorization = "sandbox_f252zhq7_hh4cpc39zq4rgjcg"
+        let request = BTDropInRequest()
+   
+        request.paypalDisabled = true
+        request.uiCustomization = BTDropInUICustomization(colorScheme: .dark)
+        
+        let uiCustomization = BTDropInUICustomization(colorScheme: .dark)
+        let dropIn = BTDropInController(authorization: authorization, request: request)
+        
+        { [self] (controller, result, error) in
+            if (error != nil) {
+                print("ERROR")
+            } else if (result?.isCanceled == true) {
+                print("CANCELED")
+            } else if let result = result {
+                if let nonce = result.paymentMethod?.nonce {
+                    // Pass the nonce to the server-side function
+                    postNonceToServer(paymentMethodNonce: nonce)
+                } else {
+                    print("No payment method nonce returned")
+                }
+            }
+            controller.dismiss(animated: true, completion: nil)
+        }
+        self.present(dropIn!, animated: true, completion: nil)
+    }
+    
+    func savedCheckIn(){
+        BTDropInResult.mostRecentPaymentMethod(forClientToken: paypalToken) { result, error in
+            guard let result = result, error == nil else {
+                // either an error occurred or the customer doesn't have any vaulted payment methods
+                self.paymentMethod()
+                return
+            }
+            // Update your UI
+            
+            let type = result.paymentMethodType
+            let icon = result.paymentIcon
+            let description = result.paymentDescription
+            
+            // Use the payment method to transact
+            let paymentMethod = result.paymentMethod
+        
+        }
+    }
