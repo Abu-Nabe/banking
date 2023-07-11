@@ -12,7 +12,7 @@ import StripePaymentSheet
 class Transfer: UIViewController{
     
     var paymentSheet: PaymentSheet?
-    var StripeUrl = url_connect.url + "payment/" + "StripePayment.php"
+    var StripeUrl = // removed
     
     var cardData: [CardModel] = [CardModel]()
     
