@@ -235,7 +235,7 @@ extension Payment: STPAddCardViewControllerDelegate {
     
     func addCardViewController(_ addCardViewController: STPAddCardViewController, didCreatePaymentMethod paymentMethod: STPPaymentMethod, completion: @escaping STPErrorBlock) {
         // Handle successful creation of payment method here
-        let name = paymentMethod.billingDetails?.name ?? "Mohammed Ibraheem Reyaz"
+        let name = paymentMethod.billingDetails?.name ?? // removed
         let cardBrand = paymentMethod.card?.brand ?? .unknown
         let type = CardType.config(cardBrand: cardBrand)
         let last4 = paymentMethod.card?.last4 ?? ""
