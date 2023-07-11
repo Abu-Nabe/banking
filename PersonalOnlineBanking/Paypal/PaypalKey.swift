@@ -9,7 +9,7 @@ import UIKit
 import Alamofire
 class PaypalKey{
     static func getPaypalToken(completion: @escaping (Result<String, Error>) -> Void) {
-        let url_connect1 = url_connect.url + "payment/" + "PaypalToken.php"
+        let url_connect1 = // removed
 
         AF.request(url_connect1, method: .post, parameters: nil, encoding: URLEncoding.default, headers: nil).responseString { response in
             switch response.result {
