@@ -1,5 +1,5 @@
 func paymentMethod(){
-        let authorization = "sandbox_f252zhq7_hh4cpc39zq4rgjcg"
+        let authorization = // removed
         let request = BTDropInRequest()
    
         request.paypalDisabled = true
